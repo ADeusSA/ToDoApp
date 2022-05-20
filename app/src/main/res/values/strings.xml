@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ToDoApp</string>
+    <string name="button_goToReg">Регистрация</string>
+    <string name="button_goToLog">Войти</string>
+    <string name="buttonForget">Забыли пароль?</string>
+    <string name="buttonCreateUser">Создать аккаунт</string>
+    <string name="textView_todoapp">To-Do App</string>
+    <string name="editTextEmailReg_hint">Адрес электронной почты</string>
+    <string name="editTextNameReg_hint">Имя</string>
+    <string name="editTextPassword_hint">Пароль</string>
+    <string name="editTextPasswordReg2">Подтверждение пароля</string>
+
+    <string name="webservice">http://tododb/</string>
+</resources>
