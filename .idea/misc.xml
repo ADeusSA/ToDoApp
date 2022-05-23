@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ADeus/AndroidStudioProjects/ToDoApp/app/src/main/res/layout/activity_central.xml" value="0.33" />
         <entry key="..\:/Users/ADeus/AndroidStudioProjects/ToDoApp/app/src/main/res/layout/activity_login.xml" value="0.33967391304347827" />
         <entry key="..\:/Users/ADeus/AndroidStudioProjects/ToDoApp/app/src/main/res/layout/activity_main.xml" value="0.33967391304347827" />
         <entry key="..\:/Users/ADeus/AndroidStudioProjects/ToDoApp/app/src/main/res/layout/activity_registration.xml" value="0.33967391304347827" />
+        <entry key="..\:/Users/ADeus/AndroidStudioProjects/ToDoApp/app/src/main/res/layout/fragment_add.xml" value="0.2703804347826087" />
+        <entry key="..\:/Users/ADeus/AndroidStudioProjects/ToDoApp/app/src/main/res/layout/fragment_task.xml" value="0.2703804347826087" />
+        <entry key="..\:/Users/ADeus/AndroidStudioProjects/ToDoApp/app/src/main/res/layout/fragment_update.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ADeus/AndroidStudioProjects/ToDoApp/app/src/main/res/layout/row_layout.xml" value="0.33" />
+        <entry key="..\:/Users/ADeus/AndroidStudioProjects/ToDoApp/app/src/main/res/menu/task_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

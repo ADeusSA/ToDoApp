@@ -6,16 +6,17 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import ru.iabarmin.todoapp.data.User
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_registration.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.iabarmin.todoapp.CentralActivity
+import ru.iabarmin.todoapp.MainActivity
 import ru.iabarmin.todoapp.R
+import ru.iabarmin.todoapp.databinding.ActivityLoginBinding
 import ru.iabarmin.todoapp.remote.RetrofitInterface
 
 
@@ -27,9 +28,11 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var retrofitInterface: RetrofitInterface
     private val BASE_URL = "http://10.0.2.2:3000"
 
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -39,20 +42,20 @@ class LoginActivity : AppCompatActivity() {
             .build()
         retrofitInterface = retrofit.create(RetrofitInterface::class.java)
 
-        buttonLog.setOnClickListener {
-            email = editTextEmailLog.text.toString().trim()
-            password = editTextPasswordLog.text.toString().trim()
+        binding.btnLog.setOnClickListener {
+            email = binding.editEmailLog.text.toString().trim()
+            password = binding.editPasswordLog.text.toString().trim()
             if (validateInputs()) {
                 handleLogin()
             }
         }
 
-        buttonForget.setOnClickListener {
+        binding.btnForget.setOnClickListener {
 
         }
     }
     /**
-     * Функция выполняет вызов к серверу для авторизации пользователя
+     * Функция выполняет запрос к серверу для авторизации пользователя
      */
     private fun handleLogin() {
         val map: HashMap<String, String> = HashMap()
@@ -86,14 +89,16 @@ class LoginActivity : AppCompatActivity() {
      * Проверка валидности введенных пользователем данных при авторизации
      */
     private fun validateInputs(): Boolean {
+        val str = "Поле не может быть пустым"
+
         if (RegistrationActivity().checkNullorBlank(email)) {
-            editTextEmailLog.error = "Поле не может быть пустым"
-            editTextEmailLog.requestFocus()
+            binding.editEmailLog.error = str
+            binding.editEmailLog.requestFocus()
             return false
         }
         if (RegistrationActivity().checkNullorBlank(password)) {
-            editTextPasswordLog.error = "Поле не может быть пустым"
-            editTextPasswordLog.requestFocus()
+            binding.editPasswordLog.error = str
+            binding.editPasswordLog.requestFocus()
             return false
         }
         return true

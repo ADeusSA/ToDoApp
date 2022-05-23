@@ -9,6 +9,16 @@
     <string name="editTextNameReg_hint">Имя</string>
     <string name="editTextPassword_hint">Пароль</string>
     <string name="editTextPasswordReg2">Подтверждение пароля</string>
+    <string name="btn_addTask">Добавить задачу</string>
+    <string name="btn_updateTask">Изменить задачу</string>
+    <string name="action_deleteAll">Удалить все задачи</string>
+    <string name="action_search">Поиск</string>
+    <string name="action_priority">Сортировка задач</string>
+    <string name="edit_task">напр., прибраться</string>
 
-    <string name="webservice">http://tododb/</string>
+    <string-array name="priorities">
+        <item>Высокий приоритет</item>
+        <item>Средний приоритет</item>
+        <item>Низкий приоритет</item>
+    </string-array>
 </resources>

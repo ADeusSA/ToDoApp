@@ -3,33 +3,32 @@ package ru.iabarmin.todoapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.databinding.DataBindingUtil
+import ru.iabarmin.todoapp.databinding.ActivityMainBinding
 import ru.iabarmin.todoapp.signup.LoginActivity
 import ru.iabarmin.todoapp.signup.RegistrationActivity
 
 class MainActivity : AppCompatActivity() {
 
-
-
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        //Удаление Title Bar
+
+        /**
+         * Удаление Title Bar
+         */
         try { this.supportActionBar!!.hide() } catch (e: NullPointerException) { }
 
-
-
-        button_goToLog.setOnClickListener {
+        binding.btnGoToLog.setOnClickListener {
             val logIntent = Intent(this, LoginActivity::class.java)
             startActivity(logIntent)
-            finish()
         }
-        button_goToReg.setOnClickListener {
+        binding.btnGoToReg.setOnClickListener {
             val regIntent = Intent(this, RegistrationActivity::class.java)
             startActivity(regIntent)
-            finish()
         }
     }
 }
