@@ -15,15 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".signup.LoginActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".CentralActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".signup.RegistrationActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity

@@ -7,7 +7,7 @@
     <string name="textView_todoapp">To-Do App</string>
     <string name="editTextEmailReg_hint">Адрес электронной почты</string>
     <string name="editTextNameReg_hint">Имя</string>
-    <string name="editTextPassword_hint">Пароль</string>
+    <string name="editTextPassword_hint">Выберите пароль</string>
     <string name="editTextPasswordReg2">Подтверждение пароля</string>
     <string name="btn_addTask">Добавить задачу</string>
     <string name="btn_updateTask">Изменить задачу</string>
@@ -15,10 +15,19 @@
     <string name="action_search">Поиск</string>
     <string name="action_priority">Сортировка задач</string>
     <string name="edit_task">напр., прибраться</string>
+    <string name="btn_forget">Восстановить</string>
+    <string name="toolbar_forget">Восстановление пароля</string>
+    <string name="toolbar_log">Авторизация</string>
+    <string name="toolbar_reg">Регистрация</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
     <string-array name="priorities">
         <item>Высокий приоритет</item>
         <item>Средний приоритет</item>
         <item>Низкий приоритет</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

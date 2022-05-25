@@ -52,7 +52,7 @@ class TaskFragment : Fragment() {
         }
 
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,
-        ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+        ItemTouchHelper.LEFT){
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -66,7 +66,7 @@ class TaskFragment : Fragment() {
                 val task = adapter.currentList[position]
                 viewModel.delete(task)
 
-                Snackbar.make(binding.root, "Удалено успешно!", Snackbar.LENGTH_LONG).apply {
+                Snackbar.make(binding.root, "Успешно удалено!", Snackbar.LENGTH_LONG).apply {
                     setAction("Отмена"){
                         viewModel.insert(task)
                     }

@@ -9,7 +9,7 @@
         android:id="@+id/taskFragment"
         android:name="ru.iabarmin.todoapp.ui.TaskFragment"
         android:label="ToDo App"
-        tools:layout="@layout/fragment_task" >
+        tools:layout="@layout/fragment_task">
         <action
             android:id="@+id/action_taskFragment_to_addFragment"
             app:destination="@id/addFragment"

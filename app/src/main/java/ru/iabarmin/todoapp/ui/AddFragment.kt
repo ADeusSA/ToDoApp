@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import ru.iabarmin.todoapp.R
 import ru.iabarmin.todoapp.TaskViewModel
 import ru.iabarmin.todoapp.data.Task
@@ -59,13 +60,11 @@ class AddFragment : Fragment() {
                     priority,
                     System.currentTimeMillis()
                 )
-
                 viewModel.insert(task)
-                Toast.makeText(requireContext(), "Задача добавлена!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Задача добавлена!", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_addFragment_to_taskFragment)
             }
         }
-
         return binding.root
     }
 }

@@ -1,6 +1,6 @@
 package ru.iabarmin.todoapp.data
 
-class User {
-    lateinit var username: String
-    lateinit var email: String
-}
+data class User (
+    var username: String,
+    var email: String
+)

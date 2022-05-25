@@ -46,7 +46,7 @@ class UpdateFragment : Fragment() {
 
             btnUpdateTask.setOnClickListener {
                 if (TextUtils.isEmpty(editTaskUpdate.text)) {
-                    Toast.makeText(requireContext(),"Введите название задачи!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity,"Введите название задачи!", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
 
@@ -61,11 +61,11 @@ class UpdateFragment : Fragment() {
                 )
 
                 viewModel.update(task)
-                Toast.makeText(requireContext(), "Успешно изменено!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Успешно изменено!", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_updateFragment_to_taskFragment)
             }
         }
-
+        setHasOptionsMenu(true)
         return binding.root
     }
 }
