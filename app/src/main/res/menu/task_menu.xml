@@ -9,6 +9,11 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView"/>
     <item
+        android:id="@+id/action_sync"
+        android:icon="@drawable/ic_sync"
+        android:title="@string/action_sync"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/action_priority"
         android:title="@string/action_priority"
         app:showAsAction="never"/>
@@ -16,4 +21,5 @@
         android:id="@+id/action_deleteAll"
         android:title="@string/action_deleteAll"
         app:showAsAction="never" />
+
 </menu>

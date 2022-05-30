@@ -20,8 +20,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.iabarmin.todoapp.CentralActivity
 import ru.iabarmin.todoapp.MainActivity
 import ru.iabarmin.todoapp.R
+import ru.iabarmin.todoapp.TaskViewModel
+import ru.iabarmin.todoapp.data.TaskDatabase
 import ru.iabarmin.todoapp.databinding.FragmentRegistrationBinding
 import ru.iabarmin.todoapp.remote.RetrofitInterface
+import ru.iabarmin.todoapp.repository.TaskRepository
+import ru.iabarmin.todoapp.ui.TaskFragment
 
 class RegistrationFragment : Fragment() {
 
@@ -150,12 +154,14 @@ class RegistrationFragment : Fragment() {
     private fun saveUserData() {
         val saveName = username
         val saveEmail = email
+        val saveStatus = ""
 
         val sharedPrefs = activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val editor = sharedPrefs?.edit()
         editor?.apply {
             putString("NAME_KEY",saveName)
             putString("EMAIL_KEY", saveEmail)
+            putString("STATUS_KEY", saveStatus)
         }?.apply()
         toastInputError("UserData Saved")
     }

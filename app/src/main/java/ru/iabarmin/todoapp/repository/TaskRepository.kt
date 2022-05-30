@@ -23,4 +23,6 @@ class TaskRepository(val taskDao: TaskDao) {
     fun searchDatabase(searchQuery: String): LiveData<List<Task>> {
         return taskDao.searchDatabase(searchQuery)
     }
+
+    //suspend fun insertMany(tasks: LiveData<List<Task>>) = taskDao.insertMany(tasks)
 }

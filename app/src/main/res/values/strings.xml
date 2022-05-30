@@ -19,6 +19,7 @@
     <string name="toolbar_forget">Восстановление пароля</string>
     <string name="toolbar_log">Авторизация</string>
     <string name="toolbar_reg">Регистрация</string>
+    <string name="action_sync">Синхронизация</string>
 
     <string name="open">Open</string>
     <string name="close">Close</string>

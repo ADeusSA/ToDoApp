@@ -26,4 +26,7 @@ interface TaskDao {
 
     @Query("select * from task_table where title like :searchQuery order by timestamp desc")
     fun searchDatabase(searchQuery: String): LiveData<List<Task>>
+
+//    @Insert
+//    suspend fun insertMany(tasks: LiveData<List<Task>>)
 }

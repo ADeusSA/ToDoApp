@@ -14,16 +14,26 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.GsonBuilder
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import ru.iabarmin.todoapp.R
 import ru.iabarmin.todoapp.TaskViewModel
 import ru.iabarmin.todoapp.databinding.FragmentTaskBinding
+import ru.iabarmin.todoapp.remote.RetrofitInterface
 import ru.iabarmin.todoapp.util.TaskAdapter
 import ru.iabarmin.todoapp.util.TaskClickListener
-import java.sql.Struct
 
 class TaskFragment : Fragment() {
     private val viewModel: TaskViewModel by viewModels()
     private lateinit var adapter: TaskAdapter
+
+    private var savedEmail: String? = null
+    private var savedStatus: String? = null
+
+    private lateinit var retrofit: Retrofit
+    private lateinit var retrofitInterface: RetrofitInterface
+    private val BASE_URL = "http://10.0.2.2:3000"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +42,16 @@ class TaskFragment : Fragment() {
 
         val binding = FragmentTaskBinding.inflate(inflater)
 
+        val gson = GsonBuilder()
+            .setLenient()
+            .create()
+
+        retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+        retrofitInterface = retrofit.create(RetrofitInterface::class.java)
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -39,8 +59,14 @@ class TaskFragment : Fragment() {
             findNavController().navigate(TaskFragmentDirections.actionTaskFragmentToUpdateFragment(task))
         })
 
-        viewModel.getAllTasks.observe(viewLifecycleOwner){
-            adapter.submitList(it)
+        getUserStatus()
+        if (savedStatus != savedEmail) {
+            viewModel.deleteAll()
+            setUserStatus()
+        } else {
+            viewModel.getAllTasks.observe(viewLifecycleOwner){
+                adapter.submitList(it)
+            }
         }
 
         binding.apply {
@@ -123,12 +149,13 @@ class TaskFragment : Fragment() {
         when(item.itemId) {
             R.id.action_priority -> viewModel.getAllPriorityTasks.observe(viewLifecycleOwner,
                 Observer { tasks -> adapter.submitList(tasks) })
-            R.id.action_deleteAll -> deleteAllItem()
+            R.id.action_deleteAll -> deleteAllTask()
+            //R.id.action_sync -> syncAllTask()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun deleteAllItem() {
+    private fun deleteAllTask() {
         AlertDialog.Builder(requireContext())
             .setTitle("Удалить все задачи")
             .setMessage("Вы уверены?")
@@ -138,6 +165,31 @@ class TaskFragment : Fragment() {
             }.setNegativeButton("Нет"){dialog, _ ->
                 dialog.dismiss()
             }.create().show()
+    }
+
+//    private fun syncAllTask() {
+//        val map: HashMap<String, String> = HashMap()
+//        map["user_id"] = emailLog!!
+//    }
+
+    /**
+     * Получаем статус об авторизации пользователя
+     */
+    private fun getUserStatus() {
+        val sharedPrefs = activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        savedStatus = sharedPrefs?.getString("STATUS_KEY", null)
+        savedEmail = sharedPrefs?.getString("EMAIL_KEY", null)
+    }
+
+    /**
+     * Устанавливаем новый статус об авторизации пользователя
+     */
+    private fun setUserStatus() {
+        val sharedPrefs = activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPrefs?.edit()
+        editor?.apply {
+            putString("STATUS_KEY", savedEmail)
+        }?.apply()
     }
 
 }

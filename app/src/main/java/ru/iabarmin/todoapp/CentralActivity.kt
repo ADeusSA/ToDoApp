@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.navigation.NavigationView
 import ru.iabarmin.todoapp.R
+import ru.iabarmin.todoapp.ui.TaskFragment
 
 
 class CentralActivity : AppCompatActivity() {
@@ -51,8 +52,8 @@ class CentralActivity : AppCompatActivity() {
 
     private fun deleteUserData() {
         val sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val savedName = sharedPrefs.getString("NAME_KEY", null)
-        val savedEmail = sharedPrefs.getString("EMAIL_KEY", null)
+        //val savedName = sharedPrefs.getString("NAME_KEY", null)
+        //val savedEmail = sharedPrefs.getString("EMAIL_KEY", null)
 
         val editor = sharedPrefs?.edit()
         editor?.apply {
