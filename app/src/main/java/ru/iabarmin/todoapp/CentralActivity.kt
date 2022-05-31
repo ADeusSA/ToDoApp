@@ -1,6 +1,7 @@
 package ru.iabarmin.todoapp
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -37,10 +38,15 @@ class CentralActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.settingsFragment -> deleteUserData()
+                R.id.settings -> goToSett()
             }
             true
         }
+    }
+
+    private fun goToSett() {
+        val i = Intent(this, SettingsActivity::class.java)
+        startActivity(i)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -50,18 +56,5 @@ class CentralActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun deleteUserData() {
-        val sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        //val savedName = sharedPrefs.getString("NAME_KEY", null)
-        //val savedEmail = sharedPrefs.getString("EMAIL_KEY", null)
-
-        val editor = sharedPrefs?.edit()
-        editor?.apply {
-            putString("NAME_KEY",null)
-            putString("EMAIL_KEY", null)
-        }?.apply()
-        Toast.makeText(applicationContext,
-            "Data deleted", Toast.LENGTH_SHORT).show()
-    }
 
 }

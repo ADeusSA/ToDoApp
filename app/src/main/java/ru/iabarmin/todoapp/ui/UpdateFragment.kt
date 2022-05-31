@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.iabarmin.todoapp.R
@@ -64,8 +65,16 @@ class UpdateFragment : Fragment() {
                 Toast.makeText(activity, "Успешно изменено!", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_updateFragment_to_taskFragment)
             }
+
+            btnBackUpdate.setOnClickListener {
+                findNavController().navigate(UpdateFragmentDirections.actionUpdateFragmentToTaskFragment())
+            }
         }
-        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
     }
 }

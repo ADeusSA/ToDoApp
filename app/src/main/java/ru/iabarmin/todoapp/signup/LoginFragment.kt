@@ -89,7 +89,8 @@ class LoginFragment : Fragment() {
 
                     val result = response.body()!!
                     val usernameSave = result.username
-                    saveUserData(emailLog!!, usernameSave)
+                    val idSave = result.id
+                    saveUserData(emailLog!!, usernameSave, idSave)
 
                     val i = Intent(activity, CentralActivity::class.java)
                     startActivity(i)
@@ -130,12 +131,13 @@ class LoginFragment : Fragment() {
         toast.show()
     }
 
-    private fun saveUserData(saveEmail: String,saveUsername: String) {
+    private fun saveUserData(saveEmail: String,saveUsername: String, idSave: String) {
         val sharedPrefs = activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val editor = sharedPrefs?.edit()
         editor?.apply {
             putString("NAME_KEY", saveUsername)
             putString("EMAIL_KEY", saveEmail)
+            putString("ID_KEY", idSave)
         }?.apply()
         toastInputError("UserData Saved")
     }

@@ -12,7 +12,7 @@ interface RetrofitInterface {
     fun executeLogin(@Body map: HashMap<String, String>): Call<User>
 
     @POST("/signup")
-    fun executeSignup(@Body map: HashMap<String, String>): Call<Void>
+    fun executeSignup(@Body map: HashMap<String, String>): Call<User>
 
     @POST("/forget")
     fun executeForget(@Body map: HashMap<String, String>): Call<Void>

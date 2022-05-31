@@ -22,6 +22,7 @@ import ru.iabarmin.todoapp.MainActivity
 import ru.iabarmin.todoapp.R
 import ru.iabarmin.todoapp.TaskViewModel
 import ru.iabarmin.todoapp.data.TaskDatabase
+import ru.iabarmin.todoapp.data.User
 import ru.iabarmin.todoapp.databinding.FragmentRegistrationBinding
 import ru.iabarmin.todoapp.remote.RetrofitInterface
 import ru.iabarmin.todoapp.repository.TaskRepository
@@ -84,14 +85,15 @@ class RegistrationFragment : Fragment() {
         map["email"] = email!!
         map["password"] = password!!
 
-        val call: Call<Void> = retrofitInterface.executeSignup(map)
+        val call: Call<User> = retrofitInterface.executeSignup(map)
 
-        call.enqueue(object: Callback<Void> {
+        call.enqueue(object: Callback<User> {
 
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.code() == 200) {
-
-                    saveUserData()
+                    val result = response.body()!!
+                    val idSave = result.id
+                    saveUserData(idSave)
 
                     val i = Intent(activity, CentralActivity::class.java)
                     startActivity(i)
@@ -102,7 +104,7 @@ class RegistrationFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<Void>, t: Throwable) {
+            override fun onFailure(call: Call<User>, t: Throwable) {
                 toastInputError("Ошибка соединения!")
             }
         })
@@ -151,7 +153,7 @@ class RegistrationFragment : Fragment() {
         toast.show()
     }
 
-    private fun saveUserData() {
+    private fun saveUserData(idSave: String) {
         val saveName = username
         val saveEmail = email
         val saveStatus = ""
@@ -162,8 +164,9 @@ class RegistrationFragment : Fragment() {
             putString("NAME_KEY",saveName)
             putString("EMAIL_KEY", saveEmail)
             putString("STATUS_KEY", saveStatus)
+            putString("ID_KEY", idSave)
         }?.apply()
-        toastInputError("UserData Saved")
+        toastInputError("UserData Saved$idSave")
     }
 
 }

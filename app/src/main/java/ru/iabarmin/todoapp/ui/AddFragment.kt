@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,10 @@ class AddFragment : Fragment() {
             android.R.layout.simple_spinner_dropdown_item,
             resources.getStringArray(R.array.priorities)
         )
+
+        binding.btnBackAdd.setOnClickListener {
+            findNavController().navigate(AddFragmentDirections.actionAddFragmentToTaskFragment())
+        }
 
         binding.apply {
             btnAddTask.isEnabled = false
@@ -64,7 +69,16 @@ class AddFragment : Fragment() {
                 Toast.makeText(activity, "Задача добавлена!", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_addFragment_to_taskFragment)
             }
+
+            btnBackAdd.setOnClickListener {
+                findNavController().navigate(AddFragmentDirections.actionAddFragmentToTaskFragment())
+            }
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
     }
 }

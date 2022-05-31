@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,12 +36,14 @@ class TaskFragment : Fragment() {
     private lateinit var retrofitInterface: RetrofitInterface
     private val BASE_URL = "http://10.0.2.2:3000"
 
+    lateinit var binding: FragmentTaskBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        val binding = FragmentTaskBinding.inflate(inflater)
+        binding = FragmentTaskBinding.inflate(inflater)
 
         val gson = GsonBuilder()
             .setLenient()
@@ -171,6 +174,12 @@ class TaskFragment : Fragment() {
 //        val map: HashMap<String, String> = HashMap()
 //        map["user_id"] = emailLog!!
 //    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
+    }
 
     /**
      * Получаем статус об авторизации пользователя
