@@ -33,8 +33,18 @@ mongoClient.connect(url, (err, db) => {
             collectionUsers.findOne(query, (err, result) => {
 
                 if (result == null) {
+
                     collectionUsers.insertOne(newUser, (err, result) => {
-                        res.status(200).send()
+                        const objToSend = {
+                        id: result._id,
+                        username: result.username,
+                        email: result.email
+                        }
+
+                        let jjs = JSON.stringify(objToSend)
+                        console.log('count: %s', jjs);
+
+                        res.status(200).send(JSON.stringify(objToSend))
                     })
                 } else {
                     res.status(400).send()
@@ -57,11 +67,14 @@ mongoClient.connect(url, (err, db) => {
                 if (result != null) {
 
                     const objToSend = {
+                        id: result._id,
                         username: result.username,
                         email: result.email
                     }
-                    let jjs = JSON.stringify(objToSend)
-                    console.log('count: %s', jjs);
+
+                    // let jjs = JSON.stringify(objToSend)
+                    // console.log('count: %s', jjs);
+
                     res.status(200).send(JSON.stringify(objToSend))
 
                 } else {
